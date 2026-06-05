@@ -26,7 +26,7 @@ export default function BlogPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {allPostsData.map(({ slug, date, title, category, excerpt }) => (
-          <Link key={slug} href={`/blog/${slug}`} className="group">
+          <Link key={slug} href={`/blog/${slug}`} className="group cursor-pointer">
             <Card className="h-full transition-all hover:shadow-md hover:border-primary/20">
               <CardHeader>
                 <div className="flex justify-between items-start mb-4">

@@ -250,7 +250,7 @@ Calculate yours at: ${window.location.href}`;
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
                       <XAxis dataKey="period" label={{ value: results.periodLabel, position: 'insideBottom', offset: -5 }} />
                       <YAxis tickFormatter={(val) => `$${(val/1000).toFixed(0)}k`} />
-                      <Tooltip formatter={(val: any) => formatCurrency(Number(val))} labelFormatter={(label) => `${results.periodLabel} ${label}`} />
+                      <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} labelFormatter={(label) => `${results.periodLabel} ${label}`} />
                       <Legend />
                       <Bar dataKey="principal" name="Principal" stackId="a" fill="#3b82f6" />
                       <Bar dataKey="interest" name="Interest" stackId="a" fill="#10b981" />
@@ -277,7 +277,7 @@ Calculate yours at: ${window.location.href}`;
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
-                                <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                                <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} />
                                 <Legend />
                             </PieChart>
                         </ResponsiveContainer>

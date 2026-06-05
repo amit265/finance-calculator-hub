@@ -241,7 +241,7 @@ const MortgageCalculator = () => {
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
-                                <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                                <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} />
                                 <Legend />
                             </PieChart>
                         </ResponsiveContainer>
@@ -270,7 +270,7 @@ const MortgageCalculator = () => {
                             <CartesianGrid strokeDasharray="3 3" vertical={false} />
                             <XAxis dataKey="year" label={{ value: 'Year', position: 'insideBottom', offset: -5 }} />
                             <YAxis tickFormatter={(val) => `$${(val/1000).toFixed(0)}k`} />
-                            <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                            <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} />
                             <Legend />
                             <Bar dataKey="balance" name="Remaining Balance" fill="#3b82f6" />
                             <Bar dataKey="interest" name="Cumulative Interest" fill="#ef4444" />

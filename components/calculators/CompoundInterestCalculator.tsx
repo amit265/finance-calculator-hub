@@ -331,7 +331,7 @@ Calculate your own at: ${window.location.href}`;
                         tickFormatter={(value) => `$${value >= 1000 ? (value/1000).toFixed(0) + 'k' : value}`}
                       />
                       <Tooltip 
-                        formatter={(val: any) => formatCurrency(Number(val))}
+                        formatter={(val: unknown) => formatCurrency(Number(val))}
                         labelFormatter={(label) => `Year ${label}`}
                       />
                       <Legend />
@@ -375,7 +375,7 @@ Calculate your own at: ${window.location.href}`;
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
-                                <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                                <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} />
                                 <Legend />
                             </PieChart>
                         </ResponsiveContainer>

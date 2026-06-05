@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Mail, MapPin, Phone, Globe } from 'lucide-react';
+import { Mail, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -25,14 +25,14 @@ export default function ContactPage() {
                   <Mail className="text-primary h-6 w-6" />
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground italic">Coming Soon</p>
+                    <p className="text-muted-foreground">hello@financecalchub.com</p>
                   </div>
                 </div>
                 <div className="flex gap-4">
                   <Globe className="text-primary h-6 w-6" />
                   <div>
                     <p className="font-medium">Website</p>
-                    <p className="text-muted-foreground">financecalchub.com</p>
+                    <p className="text-muted-foreground">coderespite.com/finance-calculator-hub</p>
                   </div>
                 </div>
               </div>

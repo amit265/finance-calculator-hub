@@ -52,14 +52,14 @@ export default function Homes() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/calculators"
-                className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-xl shadow-primary/20 transition-all hover:scale-105 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-4 text-lg font-semibold text-primary-foreground shadow-xl shadow-primary/20 transition-all hover:scale-105 hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
               >
                 Explore All Calculators
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center rounded-xl bg-secondary/10 px-8 py-4 text-lg font-semibold text-secondary transition-all hover:bg-secondary/20"
+                className="inline-flex items-center justify-center rounded-xl bg-secondary/10 px-8 py-4 text-lg font-semibold text-secondary transition-all hover:bg-secondary/20 cursor-pointer"
               >
                 Why Trust Us?
               </Link>
@@ -85,7 +85,7 @@ export default function Homes() {
             <Link
               key={calc.title}
               href={calc.href}
-              className="group relative flex flex-col p-8 bg-card border rounded-3xl shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 hover:border-primary/20"
+              className="group relative flex flex-col p-8 bg-card border rounded-3xl shadow-sm transition-all hover:shadow-xl hover:-translate-y-1 hover:border-primary/20 cursor-pointer"
             >
               <div className={`w-14 h-14 rounded-2xl ${calc.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-black/5`}>
                 <calc.icon className="h-7 w-7" />

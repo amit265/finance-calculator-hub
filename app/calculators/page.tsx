@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TrendingUp, Home, PiggyBank, CreditCard, Wallet, BarChart3, Info, Landmark, ArrowUpRight } from "lucide-react";
+import { TrendingUp, Home, PiggyBank, Wallet, BarChart3, ArrowUpRight } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const calculatorCategories = [
@@ -20,21 +20,6 @@ const calculatorCategories = [
         description: "Quickly calculate interest on short-term loans or basic investments.",
         href: "/calculators/simple-interest",
       },
-      {
-        name: "Investment Growth",
-        description: "Project the future value of your investment portfolio.",
-        href: "/calculators/investment-growth",
-      },
-      {
-        name: "Savings Goal",
-        description: "Find out how much you need to save to reach your target.",
-        href: "/calculators/savings-goal",
-      },
-      {
-        name: "Inflation Calculator",
-        description: "See how inflation affects the purchasing power of your money.",
-        href: "/calculators/inflation",
-      },
     ],
   },
   {
@@ -48,16 +33,6 @@ const calculatorCategories = [
         name: "Retirement Planner",
         description: "Plan your future and see if you're on track for retirement.",
         href: "/calculators/retirement",
-      },
-      {
-        name: "FIRE Calculator",
-        description: "Calculate when you can reach Financial Independence & Retire Early.",
-        href: "/calculators/fire",
-      },
-      {
-        name: "401(k) Calculator",
-        description: "Maximize your employer-sponsored retirement savings.",
-        href: "/calculators/401k",
       },
     ],
   },
@@ -102,11 +77,6 @@ const calculatorCategories = [
         description: "Track your assets and liabilities to find your net worth.",
         href: "/calculators/net-worth",
       },
-      {
-        name: "Emergency Fund",
-        description: "Calculate how much you need for a rainy day fund.",
-        href: "/calculators/emergency-fund",
-      },
     ],
   },
 ];
@@ -138,7 +108,7 @@ export default function CalculatorsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {category.calculators.map((calc) => (
-                <Link key={calc.name} href={calc.href} className="group">
+                <Link key={calc.name} href={calc.href} className="group cursor-pointer">
                     <Card className="h-full border-2 border-transparent transition-all duration-300 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 rounded-[2rem]">
                         <CardHeader>
                         <div className="flex justify-between items-start mb-4">

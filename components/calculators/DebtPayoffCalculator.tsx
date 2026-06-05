@@ -189,7 +189,7 @@ const DebtPayoffCalculator = () => {
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
                       <XAxis dataKey="month" label={{ value: 'Months', position: 'insideBottom', offset: -5 }} />
                       <YAxis tickFormatter={(val) => `$${val}`} />
-                      <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                      <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} />
                       <Area type="monotone" dataKey="balance" name="Remaining Balance" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.1} strokeWidth={3} />
                     </AreaChart>
                   </ResponsiveContainer>

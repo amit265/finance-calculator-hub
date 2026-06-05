@@ -184,7 +184,7 @@ const BudgetCalculator = () => {
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                  <Tooltip formatter={(val: unknown) => formatCurrency(Number(val))} />
                   <Legend />
                 </PieChart>
               </ResponsiveContainer>
