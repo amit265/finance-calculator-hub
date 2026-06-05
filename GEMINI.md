@@ -120,6 +120,8 @@ Routes
 
 /calculators/compound-interest
 
+/calculators/simple-interest
+
 /calculators/retirement
 
 /calculators/mortgage
@@ -189,6 +191,7 @@ Homepage Sections
 ## Investing
 
 * Compound Interest Calculator
+* Simple Interest Calculator
 * Investment Growth Calculator
 * Savings Goal Calculator
 * Inflation Calculator
@@ -811,7 +814,7 @@ To meet the 1000+ words requirement per section, follow this structure for each 
 # Phase 1: Launch Checklist (MVP)
 
 ## [ ] Content Completion
-- [ ] Expand all 7 MVP calculator pages to meet word count requirements.
+- [ ] Expand all 8 calculator pages to meet word count requirements.
 - [ ] Add 15+ FAQs per calculator page.
 - [ ] Implement "Related Calculators" linking logic.
 
@@ -841,8 +844,8 @@ To meet the 1000+ words requirement per section, follow this structure for each 
 # Project Status (June 2026)
 
 *   **Infrastructure:** Next.js 16 + Tailwind 4 setup complete.
-*   **Calculators:** All 7 MVP calculators have basic implementation.
+*   **Calculators:** 8 calculators implemented (Compound Interest, Simple Interest, Mortgage, Auto Loan, Debt Payoff, Budget, Net Worth, Retirement).
 *   **UI/UX:** Shadcn components integrated, responsive design active.
-*   **Blog:** Markdown-based blog system implemented with initial content.
+*   **Blog:** Markdown-based blog system implemented with 5 initial articles.
 *   **Missing:** Deep content (1000+ words), Global Search, GA4.
 

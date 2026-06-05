@@ -14,6 +14,11 @@ const calculatorCategories = [
         href: "/calculators/compound-interest",
       },
       {
+        name: "Simple Interest",
+        description: "Quickly calculate interest on short-term loans or basic investments.",
+        href: "/calculators/simple-interest",
+      },
+      {
         name: "Investment Growth",
         description: "Project the future value of your investment portfolio.",
         href: "/calculators/investment-growth",
