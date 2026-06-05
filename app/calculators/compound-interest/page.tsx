@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import React from 'react';
 import CompoundInterestCalculator from '@/components/calculators/CompoundInterestCalculator';
 import { Metadata } from 'next';
@@ -117,7 +118,7 @@ const CompoundInterestPage = () => {
 
         {/* Calculator */}
         <div className="mb-20">
-          <CompoundInterestCalculator />
+          <Suspense fallback={<div className="h-[600px] w-full flex items-center justify-center border rounded-2xl bg-slate-50 text-muted-foreground animate-pulse">Loading calculator...</div>}><CompoundInterestCalculator /></Suspense>
         </div>
 
         {/* Educational Content Section */}

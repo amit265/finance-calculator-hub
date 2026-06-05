@@ -223,7 +223,7 @@ Plan yours at: ${window.location.href}`;
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
                       <XAxis dataKey="age" label={{ value: 'Age', position: 'insideBottom', offset: -5 }} />
                       <YAxis tickFormatter={(val) => `$${(val/1000000).toFixed(1)}M`} />
-                      <Tooltip formatter={(val: number) => formatCurrency(val)} />
+                      <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
                       <Area type="monotone" dataKey="balance" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.1} strokeWidth={3} />
                       <Area type="monotone" dataKey="contributions" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} />
                     </AreaChart>

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import React from 'react';
 import MortgageCalculator from '@/components/calculators/MortgageCalculator';
 import { Metadata } from 'next';
@@ -107,7 +108,7 @@ const MortgagePage = () => {
         </div>
 
         <div className="mb-20">
-          <MortgageCalculator />
+          <Suspense fallback={<div className="h-[600px] w-full flex items-center justify-center border rounded-2xl bg-slate-50 text-muted-foreground animate-pulse">Loading calculator...</div>}><MortgageCalculator /></Suspense>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">

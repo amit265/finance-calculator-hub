@@ -171,7 +171,7 @@ const AutoLoanCalculator = () => {
                                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                 ))}
                             </Pie>
-                            <Tooltip formatter={(val: number) => formatCurrency(val)} />
+                            <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
                             <Legend />
                         </PieChart>
                     </ResponsiveContainer>

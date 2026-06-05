@@ -244,7 +244,7 @@ Calculate your own at: ${window.location.href}`;
             </div>
             <div className="space-y-2">
               <Label htmlFor="compounding">Compounding Frequency</Label>
-              <Select value={compoundingFrequency} onValueChange={setCompoundingFrequency}>
+              <Select value={compoundingFrequency} onValueChange={(val) => setCompoundingFrequency(val || "monthly")}>
                 <SelectTrigger id="compounding">
                   <SelectValue placeholder="Select frequency" />
                 </SelectTrigger>
@@ -326,7 +326,7 @@ Calculate your own at: ${window.location.href}`;
                         tickFormatter={(value) => `$${value >= 1000 ? (value/1000).toFixed(0) + 'k' : value}`}
                       />
                       <Tooltip 
-                        formatter={(value: number) => formatCurrency(value)}
+                        formatter={(val: any) => formatCurrency(Number(val))}
                         labelFormatter={(label) => `Year ${label}`}
                       />
                       <Legend />
@@ -370,7 +370,7 @@ Calculate your own at: ${window.location.href}`;
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
-                                <Tooltip formatter={(value: number) => formatCurrency(value)} />
+                                <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
                                 <Legend />
                             </PieChart>
                         </ResponsiveContainer>
