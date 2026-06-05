@@ -45,11 +45,25 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table";
-import { Share2, Copy, Download, Printer } from 'lucide-react';
+import { Share2, Copy, Printer } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { formatCurrency, copyToClipboard, shareCalculation } from '@/lib/calculator-utils';
 
 const COLORS = ['#3b82f6', '#10b981'];
+
+interface SimpleInterestPeriodData {
+  period: number;
+  interest: number;
+  principal: number;
+  total: number;
+}
+
+interface SimpleInterestResults {
+  totalInterest: number;
+  finalBalance: number;
+  data: SimpleInterestPeriodData[];
+  periodLabel: string;
+}
 
 const SimpleInterestCalculator = () => {
   const searchParams = useSearchParams();
@@ -61,8 +75,6 @@ const SimpleInterestCalculator = () => {
   const [interestRate, setInterestRate] = useState<number>(() => Number(searchParams.get('r')) || 5);
   const [time, setTime] = useState<number>(() => Number(searchParams.get('t')) || 5);
   const [timeUnit, setTimeUnit] = useState<string>(() => searchParams.get('u') || 'years');
-
-  const [results, setResults] = useState<any>(null);
 
   // Sync to URL
   useEffect(() => {
@@ -79,7 +91,7 @@ const SimpleInterestCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [principal, interestRate, time, timeUnit, pathname, router, searchParams]);
 
-  const calculateSimpleInterest = () => {
+  const calculateSimpleInterest = (): SimpleInterestResults => {
     const P = principal;
     const r = interestRate / 100;
     const t = timeUnit === 'years' ? time : time / 12;
@@ -87,7 +99,7 @@ const SimpleInterestCalculator = () => {
     const interest = P * r * t;
     const totalValue = P + interest;
 
-    let yearlyData = [];
+    const yearlyData: SimpleInterestPeriodData[] = [];
     const periods = Math.ceil(timeUnit === 'years' ? time : time);
     const periodLabel = timeUnit === 'years' ? 'Year' : 'Month';
 
@@ -110,11 +122,7 @@ const SimpleInterestCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateSimpleInterest());
-  }, [principal, interestRate, time, timeUnit]);
-
-  if (!results) return null;
+  const results = calculateSimpleInterest();
 
   const handleCopy = async () => {
     const text = `Simple Interest Calculation:
@@ -265,7 +273,7 @@ Calculate yours at: ${window.location.href}`;
                                     paddingAngle={5}
                                     dataKey="value"
                                 >
-                                    {pieData.map((entry, index) => (
+                                    {pieData.map((_entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>
@@ -302,7 +310,7 @@ Calculate yours at: ${window.location.href}`;
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {results.data.map((row: any) => (
+                            {results.data.map((row) => (
                                 <TableRow key={row.period}>
                                     <TableCell>{results.periodLabel} {row.period}</TableCell>
                                     <TableCell>{formatCurrency(row.interest)}</TableCell>

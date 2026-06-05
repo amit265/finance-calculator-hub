@@ -19,10 +19,21 @@ import {
   Legend, 
   ResponsiveContainer 
 } from 'recharts';
-import { ShieldCheck, Share2, Copy, Plus, Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const COLORS = ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6', '#ef4444', '#ec4899'];
+
+interface ChartItem {
+  name: string;
+  value: number;
+}
+
+interface NetWorthResults {
+  totalAssets: number;
+  totalLiabilities: number;
+  netWorth: number;
+  assetData: ChartItem[];
+  liabilityData: ChartItem[];
+}
 
 const NetWorthCalculator = () => {
   const searchParams = useSearchParams();
@@ -40,22 +51,24 @@ const NetWorthCalculator = () => {
   const [loans, setLoans] = useState<number>(() => Number(searchParams.get('loan')) || 15000);
   const [creditCards, setCreditCards] = useState<number>(() => Number(searchParams.get('cc')) || 2000);
 
-  const [results, setResults] = useState<any>(null);
-
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     params.set('cash', cash.toString());
     params.set('inv', investments.toString());
     params.set('prop', property.toString());
+    params.set('veh', vehicles.toString());
+    params.set('mort', mortgage.toString());
+    params.set('loan', loans.toString());
+    params.set('cc', creditCards.toString());
     
     const timeoutId = setTimeout(() => {
         router.replace(`${pathname}?${params.toString()}`, { scroll: false });
     }, 500);
 
     return () => clearTimeout(timeoutId);
-  }, [cash, investments, property, mortgage, loans, creditCards, pathname, router, searchParams]);
+  }, [cash, investments, property, vehicles, mortgage, loans, creditCards, pathname, router, searchParams]);
 
-  const calculateNetWorth = () => {
+  const calculateNetWorth = (): NetWorthResults => {
     const totalAssets = cash + investments + property + vehicles;
     const totalLiabilities = mortgage + loans + creditCards;
     const netWorth = totalAssets - totalLiabilities;
@@ -82,11 +95,7 @@ const NetWorthCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateNetWorth());
-  }, [cash, investments, property, vehicles, mortgage, loans, creditCards]);
-
-  if (!results) return null;
+  const results = calculateNetWorth();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -186,7 +195,7 @@ const NetWorthCalculator = () => {
                     paddingAngle={5}
                     dataKey="value"
                   >
-                    {results.assetData.map((entry: any, index: number) => (
+                    {results.assetData.map((_entry, index: number) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

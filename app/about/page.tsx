@@ -50,7 +50,7 @@ export default function AboutPage() {
             </CardHeader>
             <CardContent>
                 <p className="text-muted-foreground">
-                    We don't just give you a number. Our interactive charts and breakdowns help you visualize your financial journey and make informed choices.
+                    We don&apos;t just give you a number. Our interactive charts and breakdowns help you visualize your financial journey and make informed choices.
                 </p>
             </CardContent>
         </Card>
@@ -64,7 +64,7 @@ export default function AboutPage() {
             </CardHeader>
             <CardContent>
                 <p className="text-muted-foreground">
-                    Whether you're buying your first home, planning for retirement, or just trying to budget better, our tools are designed with your goals in mind.
+                    Whether you&apos;re buying your first home, planning for retirement, or just trying to budget better, our tools are designed with your goals in mind.
                 </p>
             </CardContent>
         </Card>
@@ -73,7 +73,7 @@ export default function AboutPage() {
       <div className="bg-slate-900 text-white rounded-3xl p-12 text-center">
         <h2 className="text-3xl font-bold mb-6">Our Vision</h2>
         <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-          "To become the world's most trusted utility platform for personal finance, empowering millions to achieve financial independence through better math."
+          &quot;To become the world&apos;s most trusted utility platform for personal finance, empowering millions to achieve financial independence through better math.&quot;
         </p>
       </div>
     </div>

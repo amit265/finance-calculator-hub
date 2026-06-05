@@ -103,7 +103,7 @@ const NetWorthPage = () => {
             Net Worth Calculator
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Your net worth is the ultimate measure of your financial health. It's the "big picture" number that tells you exactly where you stand on your journey to financial independence.
+            Your net worth is the ultimate measure of your financial health. It&apos;s the &quot;big picture&quot; number that tells you exactly where you stand on your journey to financial independence.
           </p>
         </div>
 
@@ -161,9 +161,9 @@ const NetWorthPage = () => {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger>What is a "good" net worth for my age?</AccordionTrigger>
+                  <AccordionTrigger>What is a &quot;good&quot; net worth for my age?</AccordionTrigger>
                   <AccordionContent>
-                    Net worth varies wildly based on location and career. A popular formula from "The Millionaire Next Door" is: (Age × Pre-tax Annual Income) / 10. This gives you a target for what an "average" accumulator of wealth might have.
+                    Net worth varies wildly based on location and career. A popular formula from &quot;The Millionaire Next Door&quot; is: (Age × Pre-tax Annual Income) / 10. This gives you a target for what an &quot;average&quot; accumulator of wealth might have.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
@@ -175,7 +175,7 @@ const NetWorthPage = () => {
                 <AccordionItem value="item-4">
                   <AccordionTrigger>How often should I update my net worth?</AccordionTrigger>
                   <AccordionContent>
-                    Most people find that updating their net worth once a month or once a quarter is sufficient. Daily updates are usually unnecessary as market fluctuations can cause distracting "noise."
+                    Most people find that updating their net worth once a month or once a quarter is sufficient. Daily updates are usually unnecessary as market fluctuations can cause distracting &quot;noise.&quot;
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

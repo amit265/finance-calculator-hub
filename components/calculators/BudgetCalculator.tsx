@@ -19,10 +19,17 @@ import {
   Legend, 
   ResponsiveContainer 
 } from 'recharts';
-import { Wallet, Share2, Copy } from 'lucide-react';
+import { Share2, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const COLORS = ['#3b82f6', '#ef4444', '#f59e0b', '#10b981', '#8b5cf6', '#ec4899', '#64748b'];
+
+interface BudgetResults {
+  totalExpenses: number;
+  netSavings: number;
+  savingsRate: number;
+  chartData: { name: string; value: number }[];
+}
 
 const BudgetCalculator = () => {
   const searchParams = useSearchParams();
@@ -38,13 +45,15 @@ const BudgetCalculator = () => {
   const [entertainment, setEntertainment] = useState<number>(() => Number(searchParams.get('ent')) || 200);
   const [other, setOther] = useState<number>(() => Number(searchParams.get('oth')) || 500);
 
-  const [results, setResults] = useState<any>(null);
-
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
     params.set('inc', monthlyIncome.toString());
     params.set('house', housing.toString());
     params.set('food', food.toString());
+    params.set('trans', transportation.toString());
+    params.set('util', utilities.toString());
+    params.set('ent', entertainment.toString());
+    params.set('oth', other.toString());
     
     const timeoutId = setTimeout(() => {
         router.replace(`${pathname}?${params.toString()}`, { scroll: false });
@@ -53,10 +62,10 @@ const BudgetCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [monthlyIncome, housing, food, transportation, utilities, entertainment, other, pathname, router, searchParams]);
 
-  const calculateBudget = () => {
+  const calculateBudget = (): BudgetResults => {
     const totalExpenses = housing + food + transportation + utilities + entertainment + other;
     const netSavings = monthlyIncome - totalExpenses;
-    const savingsRate = (netSavings / monthlyIncome) * 100;
+    const savingsRate = monthlyIncome > 0 ? (netSavings / monthlyIncome) * 100 : 0;
 
     const data = [
       { name: 'Housing', value: housing },
@@ -76,11 +85,7 @@ const BudgetCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateBudget());
-  }, [monthlyIncome, housing, food, transportation, utilities, entertainment, other]);
-
-  if (!results) return null;
+  const results = calculateBudget();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -130,6 +135,10 @@ const BudgetCalculator = () => {
             </div>
           </CardContent>
         </Card>
+        <div className="flex gap-2">
+            <Button variant="outline" size="sm" className="flex-1"><Copy className="mr-2 h-4 w-4" /> Copy</Button>
+            <Button variant="outline" size="sm" className="flex-1"><Share2 className="mr-2 h-4 w-4" /> Share</Button>
+        </div>
       </div>
 
       <div className="lg:col-span-8 space-y-6">
@@ -171,7 +180,7 @@ const BudgetCalculator = () => {
                     paddingAngle={5}
                     dataKey="value"
                   >
-                    {results.chartData.map((entry: any, index: number) => (
+                    {results.chartData.map((_entry, index: number) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

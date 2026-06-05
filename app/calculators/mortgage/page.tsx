@@ -9,7 +9,7 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Info, Home, CreditCard, Landmark } from 'lucide-react';
+import { Info, Home, Landmark } from 'lucide-react';
 import JSONLD from '@/components/JSONLD';
 
 export const metadata: Metadata = {
@@ -120,14 +120,14 @@ const MortgagePage = () => {
               </h2>
               <div className="prose prose-slate max-w-none text-muted-foreground space-y-4">
                 <p>
-                  Our mortgage calculator provides a comprehensive look at your potential monthly costs. To get an accurate estimate, you'll need a few key pieces of information:
+                  Our mortgage calculator provides a comprehensive look at your potential monthly costs. To get an accurate estimate, you&apos;ll need a few key pieces of information:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Home Price:</strong> The total purchase price of the home.</li>
-                  <li><strong>Down Payment:</strong> The amount of cash you'll pay upfront. A 20% down payment is standard to avoid PMI (Private Mortgage Insurance).</li>
+                  <li><strong>Down Payment:</strong> The amount of cash you&apos;ll pay upfront. A 20% down payment is standard to avoid PMI (Private Mortgage Insurance).</li>
                   <li><strong>Interest Rate:</strong> The annual interest rate for your loan.</li>
                   <li><strong>Loan Term:</strong> The length of the loan, typically 15 or 30 years.</li>
-                  <li><strong>Property Tax & Insurance:</strong> Annual estimates for these recurring costs, which are often bundled into your monthly payment via an escrow account.</li>
+                  <li><strong>Property Tax &amp; Insurance:</strong> Annual estimates for these recurring costs, which are often bundled into your monthly payment via an escrow account.</li>
                 </ul>
               </div>
             </section>
@@ -142,7 +142,7 @@ const MortgagePage = () => {
                   Amortization is the process of paying off a debt over time through regular payments. In the early years of a mortgage, a large portion of your monthly payment goes toward interest. As the balance decreases, more of your payment goes toward the principal.
                 </p>
                 <p>
-                  Use the "Amortization" tab in the calculator to see exactly how your balance decreases and how much interest you pay each year.
+                  Use the &quot;Amortization&quot; tab in the calculator to see exactly how your balance decreases and how much interest you pay each year.
                 </p>
               </div>
             </section>
@@ -165,13 +165,13 @@ const MortgagePage = () => {
                 <AccordionItem value="item-3">
                   <AccordionTrigger>How much house can I afford?</AccordionTrigger>
                   <AccordionContent>
-                    Most financial experts recommend that your total housing costs (PITI) should not exceed 28% of your gross monthly income. This is known as the "front-end ratio."
+                    Most financial experts recommend that your total housing costs (PITI) should not exceed 28% of your gross monthly income. This is known as the &quot;front-end ratio.&quot;
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
                   <AccordionTrigger>What is PMI?</AccordionTrigger>
                   <AccordionContent>
-                    Private Mortgage Insurance (PMI) is usually required if your down payment is less than 20% of the home's purchase price. It protects the lender if you default on the loan.
+                    Private Mortgage Insurance (PMI) is usually required if your down payment is less than 20% of the home&apos;s purchase price. It protects the lender if you default on the loan.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -187,7 +187,7 @@ const MortgagePage = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm opacity-90 leading-relaxed">
-                Don't forget to budget for closing costs! These typically range from 2% to 5% of the purchase price and are paid at the time of purchase.
+                Don&apos;t forget to budget for closing costs! These typically range from 2% to 5% of the purchase price and are paid at the time of purchase.
               </CardContent>
             </Card>
             

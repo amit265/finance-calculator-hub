@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { 
   Card, 
@@ -19,8 +19,6 @@ import {
   SelectValue 
 } from "@/components/ui/select";
 import { 
-  LineChart, 
-  Line, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -47,10 +45,24 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table";
-import { Info, Download, Share2, Printer, Copy } from 'lucide-react';
+import { Download, Share2, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
+
+interface YearlyData {
+  year: number;
+  balance: number;
+  contributions: number;
+  interest: number;
+}
+
+interface CalculationResults {
+  finalBalance: number;
+  totalContributions: number;
+  totalInterest: number;
+  yearlyData: YearlyData[];
+}
 
 const CompoundInterestCalculator = () => {
   const searchParams = useSearchParams();
@@ -79,9 +91,6 @@ const CompoundInterestCalculator = () => {
     return val || "12";
   });
 
-  // Results state
-  const [results, setResults] = useState<any>(null);
-
   // Update URL params when inputs change
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
@@ -98,14 +107,14 @@ const CompoundInterestCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [initialInvestment, monthlyContribution, interestRate, years, compoundingFrequency, pathname, router, searchParams]);
 
-  const calculateCompoundInterest = () => {
+  const calculateCompoundInterest = (): CalculationResults => {
     const P = initialInvestment;
     const PMT = monthlyContribution;
     const r = interestRate / 100;
     const n = parseInt(compoundingFrequency);
     const t = years;
 
-    let data = [];
+    const data: YearlyData[] = [];
     let currentBalance = P;
     let totalContributions = P;
     let totalInterest = 0;
@@ -148,11 +157,7 @@ const CompoundInterestCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateCompoundInterest());
-  }, [initialInvestment, monthlyContribution, interestRate, years, compoundingFrequency]);
-
-  if (!results) return null;
+  const results = calculateCompoundInterest();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -417,7 +422,7 @@ Calculate your own at: ${window.location.href}`;
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {results.yearlyData.map((row: any) => (
+                            {results.yearlyData.map((row) => (
                                 <TableRow key={row.year}>
                                     <TableCell>Year {row.year}</TableCell>
                                     <TableCell>{formatCurrency(row.contributions)}</TableCell>

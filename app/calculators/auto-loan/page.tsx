@@ -9,7 +9,7 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Info, Car, Wallet, AlertCircle } from 'lucide-react';
+import { Info, Wallet, AlertCircle } from 'lucide-react';
 import JSONLD from '@/components/JSONLD';
 
 export const metadata: Metadata = {
@@ -120,7 +120,7 @@ const AutoLoanPage = () => {
               </h2>
               <div className="prose prose-slate max-w-none text-muted-foreground space-y-4">
                 <p>
-                  To get the most accurate payment estimate, you'll need a few key numbers. Here's what they mean:
+                  To get the most accurate payment estimate, you&apos;ll need a few key numbers. Here&apos;s what they mean:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Vehicle Price:</strong> The negotiated price of the car before taxes and fees.</li>
@@ -142,7 +142,7 @@ const AutoLoanPage = () => {
                   When financing a car, small decisions can save you thousands of dollars. Consider these strategies:
                 </p>
                 <ul className="list-disc pl-6 space-y-2">
-                  <li><strong>Aim for 20% down:</strong> This helps prevent you from becoming "upside down" (owing more than the car is worth).</li>
+                  <li><strong>Aim for 20% down:</strong> This helps prevent you from becoming &quot;upside down&quot; (owing more than the car is worth).</li>
                   <li><strong>Check your credit:</strong> A higher credit score typically qualifies you for lower interest rates.</li>
                   <li><strong>Shop around:</strong> Get quotes from banks and credit unions before going to the dealership.</li>
                   <li><strong>Shorten the term:</strong> While longer terms (72-84 months) have lower monthly payments, they cost much more in total interest.</li>
@@ -156,7 +156,7 @@ const AutoLoanPage = () => {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>What is a good interest rate for a car loan?</AccordionTrigger>
                   <AccordionContent>
-                    "Good" rates vary based on the economy and your credit score. Generally, anything below the national average (which fluctuates) is considered good. Rates for new cars are typically lower than for used cars.
+                    &quot;Good&quot; rates vary based on the economy and your credit score. Generally, anything below the national average (which fluctuates) is considered good. Rates for new cars are typically lower than for used cars.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
@@ -172,9 +172,9 @@ const AutoLoanPage = () => {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
-                  <AccordionTrigger>What is "Gap Insurance"?</AccordionTrigger>
+                  <AccordionTrigger>What is &quot;Gap Insurance&quot;?</AccordionTrigger>
                   <AccordionContent>
-                    Gap insurance covers the "gap" between what you owe on your loan and the actual cash value of your car if it's totaled or stolen. It's most useful if you have a low down payment.
+                    Gap insurance covers the &quot;gap&quot; between what you owe on your loan and the actual cash value of your car if it&apos;s totaled or stolen. It&apos;s most useful if you have a low down payment.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>

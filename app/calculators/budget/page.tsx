@@ -9,7 +9,7 @@ import {
   AccordionTrigger 
 } from "@/components/ui/accordion";
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Info, PieChart, Lightbulb, CheckCircle } from 'lucide-react';
+import { Info, PieChart, Lightbulb } from 'lucide-react';
 import JSONLD from '@/components/JSONLD';
 
 export const metadata: Metadata = {
@@ -103,7 +103,7 @@ const BudgetPage = () => {
             Budget Calculator
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            A budget is telling your money where to go instead of wondering where it went. Use our tool to visualize your spending and ensure you're prioritizing your financial goals.
+            A budget is telling your money where to go instead of wondering where it went. Use our tool to visualize your spending and ensure you&apos;re prioritizing your financial goals.
           </p>
         </div>
 
@@ -126,7 +126,7 @@ const BudgetPage = () => {
                   <li><strong>List Your Income:</strong> Start with your take-home pay (after taxes).</li>
                   <li><strong>Track Fixed Expenses:</strong> These are bills that stay the same every month, like rent or insurance.</li>
                   <li><strong>Track Variable Expenses:</strong> These change, like groceries, gas, and entertainment.</li>
-                  <li><strong>Subtract Expenses from Income:</strong> If the result is positive, you're saving money. If it's negative, you're overspending.</li>
+                  <li><strong>Subtract Expenses from Income:</strong> If the result is positive, you&apos;re saving money. If it&apos;s negative, you&apos;re overspending.</li>
                   <li><strong>Adjust and Optimize:</strong> Look for categories where you can cut back to increase your savings.</li>
                 </ul>
               </div>
@@ -163,7 +163,7 @@ const BudgetPage = () => {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>What is a good savings rate?</AccordionTrigger>
                   <AccordionContent>
-                    Most experts recommend saving at least 15-20% of your income. However, any amount is better than zero. If you're just starting, aim for 5% and gradually increase it.
+                    Most experts recommend saving at least 15-20% of your income. However, any amount is better than zero. If you&apos;re just starting, aim for 5% and gradually increase it.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
@@ -175,13 +175,13 @@ const BudgetPage = () => {
                 <AccordionItem value="item-3">
                   <AccordionTrigger>What if I have an irregular income?</AccordionTrigger>
                   <AccordionContent>
-                    Budget based on your lowest expected monthly income. Any "extra" money you make can then be put directly toward savings or debt repayment.
+                    Budget based on your lowest expected monthly income. Any &quot;extra&quot; money you make can then be put directly toward savings or debt repayment.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
                   <AccordionTrigger>Should I include taxes in my budget?</AccordionTrigger>
                   <AccordionContent>
-                    It's usually easiest to budget using your "net" (post-tax) income, as that's the money you actually have available to spend and save.
+                    It&apos;s usually easiest to budget using your &quot;net&quot; (post-tax) income, as that&apos;s the money you actually have available to spend and save.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -197,7 +197,7 @@ const BudgetPage = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm opacity-90 leading-relaxed">
-                Automate your savings! Set up a recurring transfer from your checking account to your savings account on payday. This ensures you "pay yourself first."
+                Automate your savings! Set up a recurring transfer from your checking account to your savings account on payday. This ensures you &quot;pay yourself first.&quot;
               </CardContent>
             </Card>
             

@@ -78,5 +78,5 @@ export interface CalculationResult {
   finalBalance: number;
   totalContributions: number;
   totalInterest: number;
-  yearlyData: any[];
+  yearlyData: Record<string, unknown>[];
 }

@@ -103,7 +103,7 @@ const RetirementPage = () => {
             Retirement Calculator
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Planning for retirement is one of the most important financial goals you'll ever have. Use our calculator to project your savings and estimate your future monthly income.
+            Planning for retirement is one of the most important financial goals you&apos;ll ever have. Use our calculator to project your savings and estimate your future monthly income.
           </p>
         </div>
 
@@ -125,7 +125,7 @@ const RetirementPage = () => {
                 <ul className="list-disc pl-6 space-y-2">
                   <li><strong>Current Age:</strong> Your starting point. The earlier you start, the better.</li>
                   <li><strong>Retirement Age:</strong> The age you plan to stop working.</li>
-                  <li><strong>Current Savings:</strong> Any money you've already set aside for retirement.</li>
+                  <li><strong>Current Savings:</strong> Any money you&apos;ve already set aside for retirement.</li>
                   <li><strong>Monthly Contribution:</strong> How much you plan to save each month going forward.</li>
                   <li><strong>Expected Return:</strong> The annual percentage you expect your investments to grow (historically, the stock market averages 7-10% before inflation).</li>
                 </ul>
@@ -144,7 +144,7 @@ const RetirementPage = () => {
                 <ul className="list-disc pl-6 space-y-2">
                   <li>Take advantage of compound interest over decades.</li>
                   <li>Prepare for healthcare costs in your later years.</li>
-                  <li>Ensure you don't outlive your money.</li>
+                  <li>Ensure you don&apos;t outlive your money.</li>
                   <li>Gain peace of mind knowing you have a plan in place.</li>
                 </ul>
               </div>
@@ -160,7 +160,7 @@ const RetirementPage = () => {
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
-                  <AccordionTrigger>What is the "4% Rule"?</AccordionTrigger>
+                  <AccordionTrigger>What is the &quot;4% Rule&quot;?</AccordionTrigger>
                   <AccordionContent>
                     The 4% rule suggests that you can safely withdraw 4% of your retirement nest egg in the first year of retirement, and adjust that amount for inflation every year thereafter, with a high probability that your money will last for 30 years.
                   </AccordionContent>
@@ -168,13 +168,13 @@ const RetirementPage = () => {
                 <AccordionItem value="item-3">
                   <AccordionTrigger>Should I account for Social Security?</AccordionTrigger>
                   <AccordionContent>
-                    Yes, Social Security will likely provide a baseline of income, but for most people, it won't be enough to maintain their pre-retirement lifestyle. It's often best to plan your private savings first and treat Social Security as a "bonus" or a safety net.
+                    Yes, Social Security will likely provide a baseline of income, but for most people, it won&apos;t be enough to maintain their pre-retirement lifestyle. It&apos;s often best to plan your private savings first and treat Social Security as a &quot;bonus&quot; or a safety net.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
                   <AccordionTrigger>What happens if I start late?</AccordionTrigger>
                   <AccordionContent>
-                    If you start later, you'll need to save a larger percentage of your income to reach the same goal. However, it's never too late to start. Even 10 or 15 years of consistent saving can make a massive difference.
+                    If you start later, you&apos;ll need to save a larger percentage of your income to reach the same goal. However, it&apos;s never too late to start. Even 10 or 15 years of consistent saving can make a massive difference.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -190,7 +190,7 @@ const RetirementPage = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm opacity-90 leading-relaxed">
-                {"\"The best time to plant a tree was 20 years ago. The second best time is now.\" This applies perfectly to retirement savings. Don't wait for the \"perfect\" time to start; start with whatever you can today."}
+                &quot;The best time to plant a tree was 20 years ago. The second best time is now.&quot; This applies perfectly to retirement savings. Don&apos;t wait for the &quot;perfect&quot; time to start; start with whatever you can today.
               </CardContent>
             </Card>
             

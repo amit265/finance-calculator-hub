@@ -38,10 +38,26 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table";
-import { Home, Share2, Copy, Percent } from 'lucide-react';
+import { Share2, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
+
+interface AmortizationRow {
+  year: number;
+  balance: number;
+  interest: number;
+  principal: number;
+}
+
+interface MortgageResults {
+  monthlyPayment: number;
+  monthlyPI: number;
+  totalInterest: number;
+  totalCost: number;
+  amortizationSchedule: AmortizationRow[];
+  principal: number;
+}
 
 const MortgageCalculator = () => {
   const searchParams = useSearchParams();
@@ -55,8 +71,6 @@ const MortgageCalculator = () => {
   const [loanTerm, setLoanTerm] = useState<number>(() => Number(searchParams.get('t')) || 30);
   const [propertyTax, setPropertyTax] = useState<number>(() => Number(searchParams.get('tax')) || 3000);
   const [insurance, setInsurance] = useState<number>(() => Number(searchParams.get('ins')) || 1200);
-
-  const [results, setResults] = useState<any>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
@@ -72,26 +86,31 @@ const MortgageCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [homePrice, downPayment, interestRate, loanTerm, pathname, router, searchParams]);
 
-  const calculateMortgage = () => {
+  const calculateMortgage = (): MortgageResults => {
     const principal = homePrice - downPayment;
     const monthlyRate = interestRate / 100 / 12;
     const numberOfPayments = loanTerm * 12;
 
-    const monthlyPrincipalAndInterest = 
-      (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
-      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    let monthlyPrincipalAndInterest = 0;
+    if (monthlyRate === 0) {
+      monthlyPrincipalAndInterest = numberOfPayments > 0 ? principal / numberOfPayments : 0;
+    } else {
+      monthlyPrincipalAndInterest = 
+        (principal * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    }
 
     const monthlyTax = propertyTax / 12;
     const monthlyInsurance = insurance / 12;
-    const totalMonthlyPayment = monthlyPrincipalAndInterest + monthlyTax + monthlyInsurance;
+    const totalMonthlyPayment = (isFinite(monthlyPrincipalAndInterest) ? monthlyPrincipalAndInterest : 0) + monthlyTax + monthlyInsurance;
 
-    let amortizationSchedule = [];
+    const amortizationSchedule: AmortizationRow[] = [];
     let remainingBalance = principal;
     let totalInterest = 0;
 
     for (let i = 1; i <= numberOfPayments; i++) {
       const interestPayment = remainingBalance * monthlyRate;
-      const principalPayment = monthlyPrincipalAndInterest - interestPayment;
+      const principalPayment = (monthlyPrincipalAndInterest || 0) - interestPayment;
       remainingBalance -= principalPayment;
       totalInterest += interestPayment;
 
@@ -107,7 +126,7 @@ const MortgageCalculator = () => {
 
     return {
       monthlyPayment: totalMonthlyPayment,
-      monthlyPI: monthlyPrincipalAndInterest,
+      monthlyPI: isFinite(monthlyPrincipalAndInterest) ? monthlyPrincipalAndInterest : 0,
       totalInterest,
       totalCost: principal + totalInterest,
       amortizationSchedule,
@@ -115,11 +134,7 @@ const MortgageCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateMortgage());
-  }, [homePrice, downPayment, interestRate, loanTerm, propertyTax, insurance]);
-
-  if (!results) return null;
+  const results = calculateMortgage();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -222,7 +237,7 @@ const MortgageCalculator = () => {
                                     paddingAngle={5}
                                     dataKey="value"
                                 >
-                                    {pieData.map((entry, index) => (
+                                    {pieData.map((_entry, index) => (
                                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                     ))}
                                 </Pie>

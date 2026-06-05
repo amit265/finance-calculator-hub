@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Calculator, PiggyBank, Home, CreditCard, Wallet, TrendingUp, ShieldCheck, Zap } from "lucide-react";
+import { ArrowRight, BarChart3, PiggyBank, Home, CreditCard, Wallet, TrendingUp, ShieldCheck, Zap } from "lucide-react";
 
 export default function Homes() {
   const popularCalculators = [
@@ -113,7 +113,7 @@ export default function Homes() {
                   </div>
                   <div>
                     <h4 className="text-xl font-semibold mb-2">Interactive Visualizations</h4>
-                    <p className="text-slate-400 leading-relaxed">Don't just look at numbers. Visualize your financial growth with dynamic charts and detailed amortization schedules.</p>
+                    <p className="text-slate-400 leading-relaxed">Don&apos;t just look at numbers. Visualize your financial growth with dynamic charts and detailed amortization schedules.</p>
                   </div>
                 </div>
                 <div className="flex gap-4">

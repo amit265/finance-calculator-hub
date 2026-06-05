@@ -19,10 +19,18 @@ import {
   Legend, 
   ResponsiveContainer 
 } from 'recharts';
-import { Car, Share2, Copy } from 'lucide-react';
+import { Share2, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
+
+interface CalculationResults {
+  monthlyPayment: number;
+  totalInterest: number;
+  totalCost: number;
+  loanAmount: number;
+  taxAmount: number;
+}
 
 const AutoLoanCalculator = () => {
   const searchParams = useSearchParams();
@@ -35,8 +43,6 @@ const AutoLoanCalculator = () => {
   const [interestRate, setInterestRate] = useState<number>(() => Number(searchParams.get('r')) || 5.9);
   const [loanTerm, setLoanTerm] = useState<number>(() => Number(searchParams.get('t')) || 60); // Months
   const [salesTax, setSalesTax] = useState<number>(() => Number(searchParams.get('tax')) || 7);
-
-  const [results, setResults] = useState<any>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
@@ -53,7 +59,7 @@ const AutoLoanCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [vehiclePrice, downPayment, interestRate, loanTerm, salesTax, pathname, router, searchParams]);
 
-  const calculateAutoLoan = () => {
+  const calculateAutoLoan = (): CalculationResults => {
     const taxAmount = vehiclePrice * (salesTax / 100);
     const totalPurchasePrice = vehiclePrice + taxAmount;
     const loanAmount = totalPurchasePrice - downPayment;
@@ -61,26 +67,27 @@ const AutoLoanCalculator = () => {
     const monthlyRate = interestRate / 100 / 12;
     const numberOfPayments = loanTerm;
 
-    const monthlyPayment = 
-      (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
-      (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    let monthlyPayment = 0;
+    if (monthlyRate === 0) {
+      monthlyPayment = numberOfPayments > 0 ? loanAmount / numberOfPayments : 0;
+    } else {
+      monthlyPayment = 
+        (loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+        (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+    }
 
     const totalInterest = (monthlyPayment * numberOfPayments) - loanAmount;
 
     return {
-      monthlyPayment,
-      totalInterest,
-      totalCost: totalPurchasePrice + totalInterest,
+      monthlyPayment: isFinite(monthlyPayment) ? monthlyPayment : 0,
+      totalInterest: isFinite(totalInterest) ? totalInterest : 0,
+      totalCost: totalPurchasePrice + (isFinite(totalInterest) ? totalInterest : 0),
       loanAmount,
       taxAmount,
     };
   };
 
-  useEffect(() => {
-    setResults(calculateAutoLoan());
-  }, [vehiclePrice, downPayment, interestRate, loanTerm, salesTax]);
-
-  if (!results) return null;
+  const results = calculateAutoLoan();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {

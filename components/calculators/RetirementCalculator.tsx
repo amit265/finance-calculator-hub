@@ -18,7 +18,6 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  Legend, 
   ResponsiveContainer 
 } from 'recharts';
 import { 
@@ -35,8 +34,22 @@ import {
   TableHeader, 
   TableRow 
 } from "@/components/ui/table";
-import { Download, Share2, Copy, TrendingUp } from 'lucide-react';
+import { Download, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+interface YearlyRetirementData {
+  age: number;
+  balance: number;
+  contributions: number;
+}
+
+interface RetirementResults {
+  finalBalance: number;
+  totalContributions: number;
+  totalInterest: number;
+  monthlyIncome: number;
+  yearlyData: YearlyRetirementData[];
+}
 
 const RetirementCalculator = () => {
   const searchParams = useSearchParams();
@@ -50,9 +63,6 @@ const RetirementCalculator = () => {
   const [monthlyContribution, setMonthlyContribution] = useState<number>(() => Number(searchParams.get('pmt')) || 1000);
   const [expectedReturn, setExpectedReturn] = useState<number>(() => Number(searchParams.get('r')) || 7);
   const [withdrawalRate, setWithdrawalRate] = useState<number>(() => Number(searchParams.get('wr')) || 4);
-
-  // Results state
-  const [results, setResults] = useState<any>(null);
 
   // Update URL params
   useEffect(() => {
@@ -71,7 +81,7 @@ const RetirementCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [currentAge, retirementAge, currentSavings, monthlyContribution, expectedReturn, withdrawalRate, pathname, router, searchParams]);
 
-  const calculateRetirement = () => {
+  const calculateRetirement = (): RetirementResults | null => {
     const yearsToInvest = retirementAge - currentAge;
     if (yearsToInvest <= 0) return null;
 
@@ -80,7 +90,7 @@ const RetirementCalculator = () => {
     const PMT = monthlyContribution;
     const P = currentSavings;
 
-    let data = [];
+    const data: YearlyRetirementData[] = [];
     let currentBalance = P;
     let totalContributions = P;
 
@@ -115,17 +125,7 @@ const RetirementCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateRetirement());
-  }, [currentAge, retirementAge, currentSavings, monthlyContribution, expectedReturn]);
-
-  if (!results) {
-      return (
-          <Card className="p-8 text-center">
-              <p className="text-muted-foreground">Please ensure retirement age is greater than current age.</p>
-          </Card>
-      );
-  }
+  const results = calculateRetirement();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -136,6 +136,7 @@ const RetirementCalculator = () => {
   };
 
   const handleCopy = () => {
+    if (!results) return;
     const text = `Retirement Planning Results:
 Projected Balance at ${retirementAge}: ${formatCurrency(results.finalBalance)}
 Estimated Monthly Income: ${formatCurrency(results.monthlyIncome)}
@@ -193,69 +194,77 @@ Plan yours at: ${window.location.href}`;
       </div>
 
       <div className="lg:col-span-8 space-y-6 print:lg:col-span-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Card className="bg-primary/5 border-primary/20">
-            <CardHeader className="pb-2">
-              <CardDescription className="text-primary font-medium">Balance at Retirement</CardDescription>
-              <CardTitle className="text-3xl">{formatCurrency(results.finalBalance)}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card className="bg-green-50 border-green-100">
-            <CardHeader className="pb-2">
-              <CardDescription className="text-green-700 font-medium">Estimated Monthly Income</CardDescription>
-              <CardTitle className="text-3xl text-green-700">{formatCurrency(results.monthlyIncome)}</CardTitle>
-            </CardHeader>
-          </Card>
-        </div>
+        {!results ? (
+            <Card className="p-8 text-center">
+                <p className="text-muted-foreground">Please ensure retirement age is greater than current age.</p>
+            </Card>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader className="pb-2">
+                  <CardDescription className="text-primary font-medium">Balance at Retirement</CardDescription>
+                  <CardTitle className="text-3xl">{formatCurrency(results.finalBalance)}</CardTitle>
+                </CardHeader>
+              </Card>
+              <Card className="bg-green-50 border-green-100">
+                <CardHeader className="pb-2">
+                  <CardDescription className="text-green-700 font-medium">Estimated Monthly Income</CardDescription>
+                  <CardTitle className="text-3xl text-green-700">{formatCurrency(results.monthlyIncome)}</CardTitle>
+                </CardHeader>
+              </Card>
+            </div>
 
-        <Card className="print:border-none">
-          <CardHeader>
-            <Tabs defaultValue="growth">
-              <TabsList className="no-print">
-                <TabsTrigger value="growth">Growth Projection</TabsTrigger>
-                <TabsTrigger value="table">Annual Breakdown</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="growth" className="pt-6">
-                <div className="h-[400px]">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={results.yearlyData}>
-                      <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <XAxis dataKey="age" label={{ value: 'Age', position: 'insideBottom', offset: -5 }} />
-                      <YAxis tickFormatter={(val) => `$${(val/1000000).toFixed(1)}M`} />
-                      <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
-                      <Area type="monotone" dataKey="balance" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.1} strokeWidth={3} />
-                      <Area type="monotone" dataKey="contributions" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
-              </TabsContent>
+            <Card className="print:border-none">
+              <CardHeader>
+                <Tabs defaultValue="growth">
+                  <TabsList className="no-print">
+                    <TabsTrigger value="growth">Growth Projection</TabsTrigger>
+                    <TabsTrigger value="table">Annual Breakdown</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="growth" className="pt-6">
+                    <div className="h-[400px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart data={results.yearlyData}>
+                          <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                          <XAxis dataKey="age" label={{ value: 'Age', position: 'insideBottom', offset: -5 }} />
+                          <YAxis tickFormatter={(val) => `$${(val/1000000).toFixed(1)}M`} />
+                          <Tooltip formatter={(val: any) => formatCurrency(Number(val))} />
+                          <Area type="monotone" dataKey="balance" stroke="#3b82f6" fill="#3b82f6" fillOpacity={0.1} strokeWidth={3} />
+                          <Area type="monotone" dataKey="contributions" stroke="#94a3b8" fill="#94a3b8" fillOpacity={0.1} />
+                        </AreaChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </TabsContent>
 
-              <TabsContent value="table" className="pt-6 print:block">
-                <div className="max-h-[400px] overflow-auto border rounded-md print:max-h-none print:overflow-visible">
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Age</TableHead>
-                                <TableHead>Contributions</TableHead>
-                                <TableHead className="text-right">Balance</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {results.yearlyData.map((row: any) => (
-                                <TableRow key={row.age}>
-                                    <TableCell>{row.age}</TableCell>
-                                    <TableCell>{formatCurrency(row.contributions)}</TableCell>
-                                    <TableCell className="text-right font-medium">{formatCurrency(row.balance)}</TableCell>
+                  <TabsContent value="table" className="pt-6 print:block">
+                    <div className="max-h-[400px] overflow-auto border rounded-md print:max-h-none print:overflow-visible">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Age</TableHead>
+                                    <TableHead>Contributions</TableHead>
+                                    <TableHead className="text-right">Balance</TableHead>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </div>
-              </TabsContent>
-            </Tabs>
-          </CardHeader>
-        </Card>
+                            </TableHeader>
+                            <TableBody>
+                                {results.yearlyData.map((row) => (
+                                    <TableRow key={row.age}>
+                                        <TableCell>{row.age}</TableCell>
+                                        <TableCell>{formatCurrency(row.contributions)}</TableCell>
+                                        <TableCell className="text-right font-medium">{formatCurrency(row.balance)}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
+                  </TabsContent>
+                </Tabs>
+              </CardHeader>
+            </Card>
+          </>
+        )}
       </div>
     </div>
   );

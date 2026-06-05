@@ -12,19 +12,30 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { 
-  LineChart, 
-  Line, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  Legend, 
   ResponsiveContainer,
   AreaChart,
   Area
 } from 'recharts';
-import { CreditCard, Share2, Copy, Calendar } from 'lucide-react';
+import { Share2, Copy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
+interface TimelineData {
+  month: number;
+  balance: number;
+  interest: number;
+}
+
+interface DebtResults {
+  months: number;
+  totalInterest: number;
+  totalCost: number;
+  timeline: TimelineData[];
+  error?: string;
+}
 
 const DebtPayoffCalculator = () => {
   const searchParams = useSearchParams();
@@ -35,8 +46,6 @@ const DebtPayoffCalculator = () => {
   const [debtAmount, setDebtAmount] = useState<number>(() => Number(searchParams.get('amt')) || 10000);
   const [interestRate, setInterestRate] = useState<number>(() => Number(searchParams.get('r')) || 18.9);
   const [monthlyPayment, setMonthlyPayment] = useState<number>(() => Number(searchParams.get('pmt')) || 500);
-
-  const [results, setResults] = useState<any>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
@@ -51,12 +60,12 @@ const DebtPayoffCalculator = () => {
     return () => clearTimeout(timeoutId);
   }, [debtAmount, interestRate, monthlyPayment, pathname, router, searchParams]);
 
-  const calculateDebtPayoff = () => {
+  const calculateDebtPayoff = (): DebtResults => {
     let remainingBalance = debtAmount;
     const monthlyRate = interestRate / 100 / 12;
     let months = 0;
     let totalInterest = 0;
-    let data = [];
+    const data: TimelineData[] = [];
 
     data.push({
       month: 0,
@@ -66,7 +75,13 @@ const DebtPayoffCalculator = () => {
 
     // Check if payment is enough to cover interest
     if (monthlyPayment <= remainingBalance * monthlyRate) {
-        return { error: "Monthly payment must be higher than the interest charged." };
+        return { 
+          months: 0, 
+          totalInterest: 0, 
+          totalCost: 0, 
+          timeline: [], 
+          error: "Monthly payment must be higher than the interest charged." 
+        };
     }
 
     while (remainingBalance > 0 && months < 360) { // Max 30 years
@@ -94,11 +109,7 @@ const DebtPayoffCalculator = () => {
     };
   };
 
-  useEffect(() => {
-    setResults(calculateDebtPayoff());
-  }, [debtAmount, interestRate, monthlyPayment]);
-
-  if (!results) return null;
+  const results = calculateDebtPayoff();
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {

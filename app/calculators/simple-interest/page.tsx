@@ -96,7 +96,7 @@ const SimpleInterestPage = () => {
                 <AccordionItem value="item-1">
                   <AccordionTrigger>When is simple interest used?</AccordionTrigger>
                   <AccordionContent>
-                    Simple interest is commonly used for short-term loans, automobile loans, and certain types of consumer credit. Many basic savings accounts also use simple interest logic if they don't offer compounding.
+                    Simple interest is commonly used for short-term loans, automobile loans, and certain types of consumer credit. Many basic savings accounts also use simple interest logic if they don&apos;t offer compounding.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-2">
@@ -129,7 +129,7 @@ const SimpleInterestPage = () => {
               </CardHeader>
               <CardContent>
                 <p className="text-sm opacity-90 leading-relaxed">
-                  {"Always check if your loan uses 'simple' or 'compound' interest. Simple interest loans are generally cheaper for the borrower because you don't pay interest on the interest!"}
+                  Always check if your loan uses &apos;simple&apos; or &apos;compound&apos; interest. Simple interest loans are generally cheaper for the borrower because you don&apos;t pay interest on the interest!
                 </p>
               </CardContent>
             </Card>

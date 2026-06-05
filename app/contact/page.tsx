@@ -12,7 +12,7 @@ export default function ContactPage() {
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-muted-foreground">
-            Have a question about our calculators or feedback on how we can improve? We'd love to hear from you.
+            Have a question about our calculators or feedback on how we can improve? We&apos;d love to hear from you.
           </p>
         </div>
 

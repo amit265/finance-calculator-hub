@@ -112,7 +112,7 @@ const CompoundInterestPage = () => {
             Compound Interest Calculator
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
-            Compound interest is often called the "eighth wonder of the world." Use our professional calculator to see how small, consistent investments can grow into a significant nest egg over time.
+            Compound interest is often called the &quot;eighth wonder of the world.&quot; Use our professional calculator to see how small, consistent investments can grow into a significant nest egg over time.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ const CompoundInterestPage = () => {
                   Compound interest is the interest calculated on the initial principal, which also includes all of the accumulated interest from previous periods. Unlike simple interest, which is only calculated on the principal amount, compound interest allows your wealth to grow exponentially.
                 </p>
                 <p>
-                  In simpler terms, it's "interest on interest." Over long periods, this compounding effect can lead to dramatic growth in your savings, even if you only start with a small amount.
+                  In simpler terms, it&apos;s &quot;interest on interest.&quot; Over long periods, this compounding effect can lead to dramatic growth in your savings, even if you only start with a small amount.
                 </p>
                 <div className="bg-primary/5 p-6 rounded-xl border border-primary/10 text-slate-900 not-prose">
                   <h4 className="font-bold mb-2 flex items-center gap-2">

@@ -123,7 +123,7 @@ const DebtPayoffPage = () => {
                   Our debt payoff tool uses a standard declining balance formula. Each month, your payment is split between the interest charged (based on your current balance and rate) and the principal balance itself.
                 </p>
                 <p>
-                  By adjusting your monthly payment, you can immediately see the "payoff acceleration" effect. Even an extra $50 or $100 a month can significantly reduce the number of months you'll be in debt.
+                  By adjusting your monthly payment, you can immediately see the &quot;payoff acceleration&quot; effect. Even an extra $50 or $100 a month can significantly reduce the number of months you&apos;ll be in debt.
                 </p>
               </div>
             </section>
@@ -163,7 +163,7 @@ const DebtPayoffPage = () => {
               <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
               <Accordion className="w-full">
                 <AccordionItem value="item-1">
-                  <AccordionTrigger>What is a "debt-to-income" ratio?</AccordionTrigger>
+                  <AccordionTrigger>What is a &quot;debt-to-income&quot; ratio?</AccordionTrigger>
                   <AccordionContent>
                     Your DTI is the percentage of your gross monthly income that goes toward paying debts. Lenders use this to measure your ability to manage monthly payments and repay loans.
                   </AccordionContent>
@@ -177,7 +177,7 @@ const DebtPayoffPage = () => {
                 <AccordionItem value="item-3">
                   <AccordionTrigger>Is it better to save or pay off debt?</AccordionTrigger>
                   <AccordionContent>
-                    Generally, if your debt's interest rate is higher than what you can earn on your savings (which is usually true for credit cards), paying off the debt is the better financial move. However, you should always keep a small emergency fund.
+                    Generally, if your debt&apos;s interest rate is higher than what you can earn on your savings (which is usually true for credit cards), paying off the debt is the better financial move. However, you should always keep a small emergency fund.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
@@ -196,7 +196,7 @@ const DebtPayoffPage = () => {
                 <CardTitle className="text-lg text-red-900">Interest Warning</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-red-800 leading-relaxed">
-                If your interest rate is 20% or higher, a huge portion of your "minimum payment" is going straight to the bank as interest. Try to pay even a small amount above the minimum to see your progress accelerate.
+                If your interest rate is 20% or higher, a huge portion of your &quot;minimum payment&quot; is going straight to the bank as interest. Try to pay even a small amount above the minimum to see your progress accelerate.
               </CardContent>
             </Card>
             
