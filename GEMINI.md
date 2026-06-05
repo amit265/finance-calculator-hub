@@ -827,10 +827,10 @@ To meet the 1000+ words requirement per section, follow this structure for each 
 - [ ] Integrate Google Analytics 4 (GA4).
 - [ ] Verify Schema.org markup for all pages using Google's Rich Results Test.
 
-## [ ] Blog System
-- [ ] Implement Markdown/MDX based blog.
-- [ ] Create initial 8 blog posts defined in PRD.
-- [ ] Link calculators to relevant blog posts.
+## [x] Blog System
+- [x] Implement Markdown/MDX based blog.
+- [x] Create initial blog posts defined in PRD.
+- [x] Link calculators to relevant blog posts.
 
 ## [ ] Global Search
 - [ ] Implement a command-palette style search (using `cmdk` or similar).
@@ -843,5 +843,6 @@ To meet the 1000+ words requirement per section, follow this structure for each 
 *   **Infrastructure:** Next.js 16 + Tailwind 4 setup complete.
 *   **Calculators:** All 7 MVP calculators have basic implementation.
 *   **UI/UX:** Shadcn components integrated, responsive design active.
-*   **Missing:** Deep content (1000+ words), Blog system, Global Search, GA4.
+*   **Blog:** Markdown-based blog system implemented with initial content.
+*   **Missing:** Deep content (1000+ words), Global Search, GA4.
 
