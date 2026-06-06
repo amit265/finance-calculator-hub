@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
         destination: '/finance-calculator-hub',
         basePath: false,
         permanent: false,
-      },
+      }, 
     ];
   },
 };
