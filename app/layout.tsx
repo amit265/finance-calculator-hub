@@ -17,6 +17,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Finance Calculator Hub | Plan Better. Save Smarter. Grow Wealth.",
   description: "Free financial calculators for retirement planning, compound interest, mortgages, debt payoff, budgeting, and more. Make better money decisions today.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
