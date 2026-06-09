@@ -19,10 +19,10 @@ export const metadata: Metadata = {
   description: "Free financial calculators for retirement planning, compound interest, mortgages, debt payoff, budgeting, and more. Make better money decisions today.",
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
+      { url: "/finance-calculator-hub/icon.svg", type: "image/svg+xml" },
+      { url: "/finance-calculator-hub/favicon.ico" },
     ],
-    apple: "/favicon.svg",
+    apple: "/finance-calculator-hub/apple-icon.svg",
   },
 };
 
